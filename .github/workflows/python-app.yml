@@ -29,8 +29,8 @@ jobs:
 
     - name: Deploy (test passed)
       if: success()
-        run: echo "Deployed"
+      run: echo "Deployed"
 
     - name: deploy (tests failed)
       if: failure()
-        run: echo "tests failed. Stoping deployment." && exit 1
+      run: echo "tests failed. Stoping deployment." && exit 1
