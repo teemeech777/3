@@ -27,11 +27,10 @@ jobs:
         pytest
       continue-on-error: true
 
-    - name: Deploy
-      run: |
-        if [ ${{ success() }} == 'true' ]; then
-          echo "Deployed"
-        else
-          echo "Tests failed. Deployment skipped."
-          exit 1
-        fi
+    - name: Deploy (test passed)
+      if: success()
+        run: echo "Deployed"
+
+    - name: deploy (tests failed)
+      if: failure()
+        run: echo "tests failed. Stoping deployment." && exit 1
